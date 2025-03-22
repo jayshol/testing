@@ -1,17 +1,20 @@
-// Import express
-const express = require('express');
+// index.js - Simple Express Server
+
+const express = require("express");
 const app = express();
+const port = 3000;
 
-// Define a port to listen on
-const PORT = 3000;
+app.use(express.json());
 
-// Add a basic route
-app.get('/', (req, res) => {
-  res.send('Hello, world! The server is up and running and soon will be raising a pr!');
+app.get("/", (req, res) => {
+    res.send("Hello, world!");
 });
 
-// Start the server
-app.listen(PORT, () => {
-  console.log(`Server is listening on http://localhost:${PORT}`);
+app.post("/data", (req, res) => {
+    console.log(req.body); // Logging request body
+    res.json({ message: "Data received" });
 });
 
+app.listen(port, () => {
+    console.log("Server running on port:", port);
+});
